@@ -1,0 +1,11 @@
+{
+  "name": "jekyll-dark-theme-test",
+  "private": true,
+  "devDependencies": {
+    "playwright": "^1.40.0",
+    "serve": "^14.0.1"
+  },
+  "scripts": {
+    "test:e2e": "node ./tests/run-test.js"
+  }
+}
