@@ -13,7 +13,7 @@ module Jekyll
   class LineAnchorsGenerator
     @@code_block_counter = 0
 
-    def self.process_output(output)
+    def self.process_output(output, page_slug = nil)
       return output unless defined?(Nokogiri)
       doc = Nokogiri::HTML::DocumentFragment.parse(output)
       changed = false
@@ -25,7 +25,11 @@ module Jekyll
         text = code.text
         # Normalize line endings
         lines = text.gsub('\r\n', '\n').gsub('\r', '\n').split('\n')
-        base = "code-#{@@code_block_counter}"
+
+        # Use provided page_slug or fallback
+        slug = (page_slug && page_slug.length > 0) ? page_slug : 'page'
+        slug = slug.gsub(/[^A-Za-z0-9_-]/, '')
+        base = "#{slug}-code-#{@@code_block_counter}"
         @@code_block_counter += 1
 
         # Build new fragment: each line wrapped in a span with an id
@@ -58,7 +62,15 @@ module Jekyll
   Jekyll::Hooks.register [:pages, :documents, :posts], :post_render do |page|
     next unless page.output_ext == '.html' && page.output
     begin
-      page.output = LineAnchorsGenerator.process_output(page.output)
+      # derive a slug from page.url or page.path
+      slug = if page.data && page.data['slug']
+               page.data['slug']
+             elsif page.url
+               page.url.gsub(%r{^/|/$}, '').gsub('/', '-').gsub(/[^A-Za-z0-9_-]/, '')
+             else
+               File.basename(page.path, File.extname(page.path)).gsub(/[^A-Za-z0-9_-]/, '')
+             end
+      page.output = LineAnchorsGenerator.process_output(page.output, slug)
     rescue => e
       Jekyll.logger.error 'line_anchors:', "failed to process #{page.path}: #{e.message}"
     end
