@@ -8,6 +8,17 @@ Minimal dark Jekyll theme that uses the following colors:
 Features
 - Dark site styles
 - Code blocks include a small "Copy" watermark in the top-right; clicking it copies the code block to the clipboard with brief feedback.
+ - Syntax highlighting (Prism) tuned to the dark theme colors for common languages
+ - Syntax highlighting (Prism) tuned to the dark theme colors for common languages
+
+Vendor Prism locally
+1. Run the vendor script to download Prism core and the line-numbers plugin into `assets/`:
+
+```fish
+node scripts/vendor-prism.js
+```
+
+2. The theme will load local copies of `prism.min.js` and the `prism-line-numbers` plugin and CSS. Line numbers will be available if you add the `line-numbers` class to your `pre` elements (Prism will also auto-initialize).
 
 Usage
 1. Copy the files into your Jekyll site or add this directory as a remote theme/local theme.
