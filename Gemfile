@@ -1,3 +1,5 @@
 source 'https://rubygems.org'
-gem 'jekyll', '~> 4.3'
-gem 'nokogiri', '~> 1.14'
+
+gem 'jekyll', '~> 5.0'
+
+# Add any other gems you need here

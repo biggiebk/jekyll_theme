@@ -3,18 +3,25 @@ layout: default
 title: Home
 ---
 
-Welcome to the demo page for the Jekyll Dark Theme. Below is a code block you can copy using the toolbar.
+# Welcome
 
-```bash {.line-numbers}
-echo "Hello, Jekyll Dark Theme!"
+This is a minimal dark Jekyll theme with syntax highlighted code blocks.
+
+## Example: JavaScript
+
+```javascript
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+greet('world');
 ```
-layout: default
-title: Home
 
+## Example: Python
 
+```python
+def add(a, b):
+    return a + b
 
-Welcome to the demo page for the Jekyll Dark Theme. Below is a code block you can copy using the watermark button.
-
-```bash {.line-numbers}
-echo "Hello, Jekyll Dark Theme!"
+print(add(2,3))
 ```

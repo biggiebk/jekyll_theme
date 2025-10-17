@@ -1,3 +1,20 @@
+# Minimal Dark Jekyll Theme
+
+This is a tiny Jekyll site/theme with a dark color scheme.
+
+Colors:
+- Background: rgb(23,32,36)
+- Foreground: rgb(192,239,254)
+
+Code blocks are highlighted using highlight.js (client-side).
+
+Quick start:
+
+1. Install Ruby and Bundler.
+2. bundle install
+3. bundle exec jekyll serve
+
+Open http://127.0.0.1:4000
 Jekyll Dark Theme
 ==================
 

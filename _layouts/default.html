@@ -4,20 +4,21 @@
   <body>
     <header class="site-header">
       <div class="wrap">
-        <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title | default: "Jekyll Dark Theme" }}</a></h1>
+        <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title | default: "My Jekyll Site" }}</a></h1>
       </div>
     </header>
 
-    <main class="wrap">
+    <main class="site-main wrap">
       {{ content }}
     </main>
 
     <footer class="site-footer">
       <div class="wrap">
-        <p>&copy; {{ site.time | date: "%Y" }} {{ site.title | default: "Jekyll Dark Theme" }}</p>
+        <small>&copy; {{ site.time | date: "%Y" }} {{ site.title | default: "My Jekyll Site" }}</small>
       </div>
     </footer>
 
-  <!-- copy watermark removed; Prism toolbar provides copy functionality -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="{{ '/assets/js/highlight-init.js' | relative_url }}"></script>
   </body>
 </html>

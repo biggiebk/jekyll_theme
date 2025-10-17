@@ -1,5 +1,21 @@
-name: jekyll-dark-theme
-title: Jekyll Dark Theme
-description: Minimal dark theme with copy-on-click code watermark
-baseurl: ""
-url: ""
+title: My Jekyll Site
+email: ''
+description: >
+  A minimal dark theme using highlight.js for client-side syntax highlighting.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
+
+author:
+  name: ""
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+# We use client-side highlight.js, so leave Jekyll's highlighter unset.
+#highlighter: rouge
+
+# Exclude node_modules etc.
+exclude:
+  - Gemfile.lock
+  - node_modules

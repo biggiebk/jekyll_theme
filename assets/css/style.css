@@ -1,49 +1,42 @@
-:root{
-  --bg: rgb(23,32,36);
-  --fg: rgb(192,239,254);
-  --muted: rgba(192,239,254,0.65);
-  --accent: #6ee7ff;
+:root {
+  --bg: rgb(23, 32, 36);
+  --fg: rgb(192, 239, 254);
+  --muted: rgba(192,239,254,0.6);
+  --accent: #2dd4bf;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
+* { box-sizing: border-box; }
+html,body{ height:100%; }
 body{
   margin:0;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   background: var(--bg);
   color: var(--fg);
   line-height:1.6;
 }
 
-.wrap{max-width:860px;margin:2rem auto;padding:0 1rem}
-.site-header{border-bottom:1px solid rgba(255,255,255,0.04);padding:.75rem 0}
-.site-title a{color:var(--fg);text-decoration:none}
+.wrap{ max-width:900px; margin:0 auto; padding:2rem; }
+.site-header{ border-bottom:1px solid rgba(255,255,255,0.03); padding:1rem 0; }
+.site-title a{ color:var(--fg); text-decoration:none; }
+.site-main{ padding:2rem 0; }
+.site-footer{ border-top:1px solid rgba(255,255,255,0.03); padding:1rem 0; color:var(--muted); }
 
-h1,h2,h3,h4{color:var(--fg)}
+h1,h2,h3{ color:var(--fg); margin-top:0; }
 
-/* Content */
-main a{color:var(--accent)}
+a{ color:var(--accent); }
 
-/* Code blocks */
-/*pre{background: rgb(79,95,95);padding:1rem;border-radius:8px;overflow:auto;position:relative}
-pre code{color: rgb(128,212,178);font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;}*/
+/* Code block styling */
+pre, code{ background: transparent; color: var(--fg); }
+pre{ padding:1rem; overflow:auto; border-radius:6px; background: rgba(255,255,255,0.02); }
+code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace; }
 
-/* copy watermark removed in favor of Prism toolbar copy functionality */
-
-/* Inline code */
-code.inline{background:rgba(255,255,255,0.03);padding:.15rem .3rem;border-radius:4px}
-
-/* Small responsive tweaks */
-@media (max-width:600px){
-  .wrap{margin:1rem;padding:0 .75rem}
-}
-
-/* Screen reader only utility */
-.sr-only{
-  position: absolute !important;
-  height: 1px; width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap;
-  border: 0; padding: 0; margin: -1px;
-}
+/* Small tweaks for highlight.js - use its default classes but adjust colors to our theme */
+.hljs{ display:block; overflow-x:auto; padding:1rem; background: transparent; color: var(--fg); }
+.hljs-comment, .hljs-quote { color: #7f8a8d; }
+.hljs-keyword, .hljs-selector-tag, .hljs-subst { color: #ff7b72; }
+.hljs-number, .hljs-literal, .hljs-variable, .hljs-template-variable, .hljs-tag .hljs-attr { color: #ffb86b; }
+.hljs-string, .hljs-doctag { color: #9bdc8f; }
+.hljs-title, .hljs-section, .hljs-selector-id { color: #8be9fd; }
+.hljs-subst { color: var(--fg); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }
