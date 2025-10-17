@@ -25,8 +25,8 @@ h1,h2,h3,h4{color:var(--fg)}
 main a{color:var(--accent)}
 
 /* Code blocks */
-pre{background:rgba(0,0,0,0.18);padding:1rem;border-radius:8px;overflow:auto;position:relative}
-pre code{color:var(--fg);font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;}
+pre{background: rgb(79,95,95);padding:1rem;border-radius:8px;overflow:auto;position:relative}
+pre code{color: rgb(128,212,178);font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;}
 
 /* Watermark copy button */
 .code-watermark{
