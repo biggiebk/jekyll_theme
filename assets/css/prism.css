@@ -6,6 +6,21 @@
 pre[class*="language-"] { background: transparent; }
 code[class*="language-"] { background: transparent; }
 
+/* Core code block base styles merged from prism core theme */
+code[class*=language-],pre[class*=language-]{
+   color: #f8f8f2;
+   background: transparent;
+   text-shadow: 0 1px rgba(0,0,0,.3);
+   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+   font-size: 1em;
+   text-align: left;
+   white-space: pre;
+   line-height: 1.5;
+   tab-size: 4;
+}
+pre[class*=language-] { padding: 1em; margin: .5em 0; overflow: auto; border-radius: .3em; }
+:not(pre) > code[class*=language-] { padding: .1em; border-radius: .3em; white-space: normal; }
+
 .token.comment,
 .token.prolog,
 .token.doctype,
