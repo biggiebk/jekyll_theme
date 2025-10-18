@@ -28,6 +28,18 @@ a{ color:var(--accent); }
 /* Code block styling */
 pre, code{ background: transparent; color: var(--fg); }
 pre{ padding:1rem; overflow:auto; border-radius:6px; background: rgba(255,255,255,0.02); }
+/* Ensure code blocks do not wrap and instead scroll horizontally */
+pre, pre code, .hljs, .code-wrapper .hljs, pre > code {
+  white-space: pre !important;
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+/* make sure the pre container shows horizontal scrollbar when needed */
+.code-wrapper pre, pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace; }
 
 /* Small tweaks for highlight.js - use its default classes but adjust colors to our theme */
