@@ -87,7 +87,7 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
   top: 8px;
   margin: 0;
   padding: 0;
-  width: 1.2rem;
+  width: 1.4rem;
   text-align: right;
   color: var(--muted);
   pointer-events: none;
@@ -104,7 +104,7 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
 .code-wrapper ol.line-numbers li{
   list-style: none;
   height: 1.4rem;
-  padding: 0 0.15rem;
+  padding: 0 0.2rem;
   /* ensure digits use the tabular numbers feature as well */
   font-variant-numeric: tabular-nums;
 }
@@ -116,7 +116,7 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
   z-index: 1;
 }
 .code-wrapper .hljs { /* single left padding so code sits closer to line numbers */
-  padding-left: calc(0.2rem + 1.2rem);
+  padding-left: calc(0.2rem + 1.4rem);
   position: relative;
   z-index: 1;
 }
