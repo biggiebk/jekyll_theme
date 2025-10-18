@@ -23,8 +23,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const lines = rawText.split('\n');
     const ol = document.createElement('ol');
     ol.className = 'line-numbers';
-    lines.forEach(() => {
+    lines.forEach((_, idx) => {
       const li = document.createElement('li');
+      li.textContent = String(idx + 1);
+      li.setAttribute('aria-hidden', 'true');
       ol.appendChild(li);
     });
     wrapper.appendChild(ol);

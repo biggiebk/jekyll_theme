@@ -93,6 +93,7 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
   pointer-events: none;
   font-size: 0.85rem;
   line-height: 1.4rem;
+  z-index: 3;
 }
 .code-wrapper ol.line-numbers li{
   list-style: none;
@@ -101,6 +102,6 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
 }
 
 /* Shift code to the right to make room for line numbers */
-.code-wrapper pre, .code-wrapper .hljs { padding-left: calc(1rem + 2.8rem); }
+.code-wrapper pre, .code-wrapper .hljs { padding-left: calc(1rem + 2.8rem); position: relative; z-index: 1; }
 
 
