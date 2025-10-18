@@ -93,12 +93,20 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
   pointer-events: none;
   font-size: 0.85rem;
   line-height: 1.4rem;
+  /* Use a monospace numeric font and enable tabular numbers for perfect alignment */
+  font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum" 1;
+  -webkit-font-feature-settings: "tnum" 1;
+  font-feature-settings: "tnum" 1;
   z-index: 3;
 }
 .code-wrapper ol.line-numbers li{
   list-style: none;
   height: 1.4rem;
   padding: 0 0.3rem;
+  /* ensure digits use the tabular numbers feature as well */
+  font-variant-numeric: tabular-nums;
 }
 
 /* Shift code to the right to make room for line numbers */
