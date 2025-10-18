@@ -120,11 +120,16 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
 /* Ensure grid/flex children can overflow correctly (pre blocks need min-width:0) */
 .site-main, .wrap, .code-wrapper, .site-grid { min-width: 0; }
 
-/* Force code blocks and inner hljs spans to be block-level and scrollable to avoid wrapping */
-pre, pre code, .hljs, .hljs * {
+/* Force code blocks to be block-level and scrollable; keep token spans inline */
+pre, pre code, .hljs {
   white-space: pre !important;
-  display: block !important;
-  overflow-x: auto !important;
+  display: block;
+  overflow-x: auto;
+}
+
+/* Keep highlight.js token spans inline but preserve whitespace */
+.hljs, .hljs * {
+  white-space: pre !important;
 }
 
 /* Line numbers for code blocks */
