@@ -83,15 +83,15 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
 .code-wrapper{ position: relative; }
 .code-wrapper ol.line-numbers{
   position: absolute;
-  left: 8px;
+  left: 6px;
   top: 8px;
   margin: 0;
   padding: 0;
-  width: 1.8rem;
+  width: 1.2rem;
   text-align: right;
   color: var(--muted);
   pointer-events: none;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.4rem;
   /* Use a monospace numeric font and enable tabular numbers for perfect alignment */
   font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", ui-monospace, monospace;
@@ -104,12 +104,21 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
 .code-wrapper ol.line-numbers li{
   list-style: none;
   height: 1.4rem;
-  padding: 0 0.3rem;
+  padding: 0 0.15rem;
   /* ensure digits use the tabular numbers feature as well */
   font-variant-numeric: tabular-nums;
 }
 
 /* Shift code to the right to make room for line numbers */
-.code-wrapper pre, .code-wrapper .hljs { padding-left: calc(1rem + 2.2rem); position: relative; z-index: 1; }
+.code-wrapper pre { /* remove left padding on pre so it doesn't double-pad with .hljs */
+  padding-left: 0;
+  position: relative;
+  z-index: 1;
+}
+.code-wrapper .hljs { /* single left padding so code sits closer to line numbers */
+  padding-left: calc(0.2rem + 1.2rem);
+  position: relative;
+  z-index: 1;
+}
 
 
