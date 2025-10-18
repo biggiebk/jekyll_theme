@@ -59,3 +59,23 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
 .copy-btn:active{ transform: translateY(1px); }
 .copy-btn.copied{ background: var(--accent); color: #082; border-color: rgba(0,0,0,0.1); }
 
+/* Site grid with left TOC */
+.site-grid{ display:grid; grid-template-columns: 220px 1fr; gap:2rem; align-items:start; }
+.site-toc{ position:sticky; top:1rem; max-height:calc(100vh - 2rem); overflow:auto; padding-right:1rem; }
+.toc-nav{ font-size:0.95rem; color:var(--muted); }
+.toc-nav ul{ list-style:none; margin:0; padding:0; }
+.toc-nav li{ margin:0.25rem 0; }
+.toc-nav a{ color:var(--muted); text-decoration:none; }
+.toc-nav a:hover{ color:var(--fg); }
+.toc-nav .toc-level-1 > a{ font-weight:600; color:var(--fg); }
+.toc-nav .toc-level-2{ padding-left:0.5rem; }
+.toc-nav .toc-level-3{ padding-left:1rem; font-size:0.9rem; }
+.toc-nav a.active{ color:var(--accent); }
+
+/* Responsive: hide TOC on small screens */
+@media (max-width: 900px){
+  .site-grid{ grid-template-columns: 1fr; }
+  .site-toc{ display:none; }
+  .wrap{ padding:1rem; }
+}
+

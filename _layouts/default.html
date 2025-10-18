@@ -8,9 +8,17 @@
       </div>
     </header>
 
-    <main class="site-main wrap">
-      {{ content }}
-    </main>
+    <div class="site-grid wrap">
+      <aside class="site-toc" id="site-toc" aria-label="Table of contents">
+        <nav class="toc-nav" id="toc-nav">
+          <!-- TOC will be injected here -->
+        </nav>
+      </aside>
+
+      <main class="site-main">
+        {{ content }}
+      </main>
+    </div>
 
     <footer class="site-footer">
       <div class="wrap">
