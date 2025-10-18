@@ -31,14 +31,38 @@ pre{ padding:1rem; overflow:auto; border-radius:6px; background: rgba(255,255,25
 /* Ensure code blocks do not wrap and instead scroll horizontally */
 pre, pre code, .hljs, .code-wrapper .hljs, pre > code {
   white-space: pre !important;
-  white-space: pre;
   word-break: normal;
   overflow-wrap: normal;
 }
+/* Also ensure inner highlight.js spans inherit pre so token spans don't force wrapping */
+.hljs, .hljs * {
+  white-space: pre !important;
+}
 /* make sure the pre container shows horizontal scrollbar when needed */
 .code-wrapper pre, pre {
-  overflow-x: auto;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
   -webkit-overflow-scrolling: touch;
+  /* Reserve scrollbar space so it's visible and doesn't overlap content */
+  scrollbar-gutter: stable both-edges;
+}
+
+/* Make horizontal scrollbar visible and styled on WebKit browsers */
+pre::-webkit-scrollbar {
+  height: 10px;
+}
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+pre::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.08);
+  border-radius: 6px;
+}
+
+/* Firefox scrollbar styling */
+pre {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.08) transparent;
 }
 code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace; }
 
@@ -55,6 +79,7 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
 
 /* Copy button for code blocks */
 .code-wrapper{ position: relative; }
+.code-wrapper{ display: block; width: 100%; }
 .copy-btn{
   position: absolute;
   top: 8px;
@@ -90,6 +115,16 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
   .site-grid{ grid-template-columns: 1fr; }
   .site-toc{ display:none; }
   .wrap{ padding:1rem; }
+}
+
+/* Ensure grid/flex children can overflow correctly (pre blocks need min-width:0) */
+.site-main, .wrap, .code-wrapper, .site-grid { min-width: 0; }
+
+/* Force code blocks and inner hljs spans to be block-level and scrollable to avoid wrapping */
+pre, pre code, .hljs, .hljs * {
+  white-space: pre !important;
+  display: block !important;
+  overflow-x: auto !important;
 }
 
 /* Line numbers for code blocks */
