@@ -1,26 +1,35 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', async (event) => {
+  // First initialize highlight.js synchronously so the DOM inside code blocks
+  // reflects final rendered lines (some themes may inject spans etc.)
   if (window.hljs) {
     hljs.highlightAll();
   }
 
-  // Attach copy buttons to code blocks
+  // Process code blocks after a short delay to ensure highlight.js has finished
+  // manipulating the DOM (some browsers/renderers are async)
+  await new Promise((r) => setTimeout(r, 20));
+
   const pres = Array.from(document.querySelectorAll('pre'));
   pres.forEach((pre) => {
+    // If the pre is already wrapped, use that wrapper
+    let wrapper = pre.closest('.code-wrapper');
+    if (!wrapper) {
+      wrapper = document.createElement('div');
+      wrapper.className = 'code-wrapper';
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+    }
+
+    // If we already added line numbers, skip
+    if (wrapper.querySelector('ol.line-numbers')) return;
+
     const code = pre.querySelector('code');
     if (!code) return;
 
-    // Avoid adding multiple buttons
-    if (pre.classList.contains('code-wrapper')) return;
-
-    // Wrap pre in a container so we can position the button
-    const wrapper = document.createElement('div');
-    wrapper.className = 'code-wrapper';
-    pre.parentNode.insertBefore(wrapper, pre);
-    wrapper.appendChild(pre);
-
-    // Add line numbers
+    // Use the rendered text to count lines (after highlight.js)
     const rawText = code.innerText || code.textContent || '';
     const lines = rawText.split('\n');
+
     const ol = document.createElement('ol');
     ol.className = 'line-numbers';
     lines.forEach((_, idx) => {
@@ -31,11 +40,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
     wrapper.appendChild(ol);
 
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'copy-btn';
-    btn.innerText = 'Copy';
-    wrapper.appendChild(btn);
+    // Create copy button (add aria and title for clarity)
+    let btn = wrapper.querySelector('.copy-btn');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'copy-btn';
+      btn.innerText = 'Copy';
+      btn.setAttribute('aria-label', 'Copy code to clipboard');
+      btn.title = 'Copy code';
+      wrapper.appendChild(btn);
+    }
 
     btn.addEventListener('click', async () => {
       const text = code.innerText;
@@ -43,16 +58,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           await navigator.clipboard.writeText(text);
         } else {
-          // Fallback for older browsers
-          const textarea = document.createElement('textarea');
-          textarea.value = text;
-          textarea.setAttribute('readonly', '');
-          textarea.style.position = 'absolute';
-          textarea.style.left = '-9999px';
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textarea);
+          // Try a textarea fallback first
+          let copied = false;
+          try {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'absolute';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            copied = document.execCommand('copy');
+            document.body.removeChild(textarea);
+          } catch (e) {
+            copied = false;
+          }
+          // If textarea fallback didn't work, try Range selection copy
+          if (!copied) {
+            try {
+              const range = document.createRange();
+              range.selectNodeContents(code);
+              const sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(range);
+              copied = document.execCommand('copy');
+              sel.removeAllRanges();
+            } catch (e) {
+              copied = false;
+            }
+          }
+          if (!copied) throw new Error('copy-fallback-failed');
         }
         btn.classList.add('copied');
         const old = btn.innerText;
@@ -62,7 +97,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
           btn.innerText = old;
         }, 1400);
       } catch (err) {
-        console.error('Copy failed', err);
+        // Provide clearer console info for debugging
+        console.error('Copy failed for code block:', err, { textSnippet: text.slice(0, 120) });
         btn.innerText = 'Failed';
         setTimeout(() => {
           btn.innerText = 'Copy';
@@ -70,6 +106,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
     });
   });
+  console.log('Processed', pres.length, 'pre blocks for line numbers and copy buttons');
 });
 
 // --- Table of Contents generation and scroll spy ---
