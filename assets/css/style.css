@@ -79,3 +79,28 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
   .wrap{ padding:1rem; }
 }
 
+/* Line numbers for code blocks */
+.code-wrapper{ position: relative; }
+.code-wrapper ol.line-numbers{
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  margin: 0;
+  padding: 0;
+  width: 2.4rem;
+  text-align: right;
+  color: var(--muted);
+  pointer-events: none;
+  font-size: 0.85rem;
+  line-height: 1.4rem;
+}
+.code-wrapper ol.line-numbers li{
+  list-style: none;
+  height: 1.4rem;
+  padding: 0 0.5rem;
+}
+
+/* Shift code to the right to make room for line numbers */
+.code-wrapper pre, .code-wrapper .hljs { padding-left: calc(1rem + 2.8rem); }
+
+

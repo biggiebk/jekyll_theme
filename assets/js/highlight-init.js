@@ -18,6 +18,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     pre.parentNode.insertBefore(wrapper, pre);
     wrapper.appendChild(pre);
 
+    // Add line numbers
+    const rawText = code.innerText || code.textContent || '';
+    const lines = rawText.split('\n');
+    const ol = document.createElement('ol');
+    ol.className = 'line-numbers';
+    lines.forEach(() => {
+      const li = document.createElement('li');
+      ol.appendChild(li);
+    });
+    wrapper.appendChild(ol);
+
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'copy-btn';
