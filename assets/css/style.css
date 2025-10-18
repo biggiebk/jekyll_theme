@@ -87,7 +87,7 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
   top: 8px;
   margin: 0;
   padding: 0;
-  width: 2.4rem;
+  width: 1.8rem;
   text-align: right;
   color: var(--muted);
   pointer-events: none;
@@ -98,10 +98,10 @@ code{ font-family: SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono"
 .code-wrapper ol.line-numbers li{
   list-style: none;
   height: 1.4rem;
-  padding: 0 0.5rem;
+  padding: 0 0.3rem;
 }
 
 /* Shift code to the right to make room for line numbers */
-.code-wrapper pre, .code-wrapper .hljs { padding-left: calc(1rem + 2.8rem); position: relative; z-index: 1; }
+.code-wrapper pre, .code-wrapper .hljs { padding-left: calc(1rem + 2.2rem); position: relative; z-index: 1; }
 
 
